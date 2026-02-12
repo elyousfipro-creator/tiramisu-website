@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { sendEmail, emailTemplates } from './services/email';
 
 // Types
 export type Size = 'L' | 'XL';
@@ -336,7 +337,24 @@ export const useStore = create<AppState>((set, get) => ({
   },
 
   // Users management
-  addUser: (user) => set(s => ({ users: [...s.users, { ...user, id: generateId() }] })),
+  addUser: async (user) => {
+    const newUser = { ...user, id: generateId() };
+    set(s => ({ users: [...s.users, newUser] }));
+    
+    // Send welcome email
+    if (user.email) {
+      try {
+        await sendEmail({
+          to: user.email,
+          ...emailTemplates.welcome(user.name)
+        });
+      } catch (error) {
+        console.error('Failed to send welcome email:', error);
+      }
+    }
+    
+    return newUser;
+  },
   toggleUserActive: (id) => set(s => ({
     users: s.users.map(u => u.id === id ? { ...u, active: !u.active } : u)
   })),
