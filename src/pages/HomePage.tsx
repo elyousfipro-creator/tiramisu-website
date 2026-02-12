@@ -56,19 +56,10 @@ export function HomePage() {
           <div className="flex-1 relative">
             <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-pastel-pink-200 to-pastel-blue-200 rounded-full opacity-30 blur-3xl animate-pulse" />
-              <div className="relative bg-gradient-to-br from-white to-pastel-pink-100 rounded-3xl p-6 shadow-2xl border border-pastel-pink-300 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="text-center space-y-3">
-                  {/* Offre promo dans la carte */}
-                  <div className="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-yellow-400 rounded-xl shadow-md">
-                    <span className="text-xl">🎁</span>
-                    <div className="text-left">
-                      <p className="text-[10px] font-bold text-yellow-700 uppercase">Offre du moment</p>
-                      <p className="text-xs font-bold text-gray-800">1 XL acheté = 1 Cookie offert !</p>
-                    </div>
-                  </div>
-                  <img src={kinderBuenoImage} alt="Tiramisu" className="w-full h-44 object-cover rounded-2xl" />
+              <div className="relative bg-gradient-to-br from-white to-pastel-pink-100 rounded-3xl p-8 shadow-2xl border border-pastel-pink-300 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="text-center space-y-4">
+                  <img src={kinderBuenoImage} alt="Tiramisu" className="w-full h-48 object-cover rounded-2xl" />
                   <h3 className="text-2xl font-bold text-pastel-blue-700">Tiramisu</h3>
-                  <p className="text-pastel-pink-600">À partir de <span className="text-3xl font-extrabold">5€</span></p>
                   <div className="flex items-center justify-center gap-1">
                     {[1,2,3,4,5].map(i => <Star key={i} size={16} className="fill-pastel-pink-400 text-pastel-pink-400" />)}
                     <span className="text-sm text-pastel-blue-600 ml-2">4.9/5</span>
