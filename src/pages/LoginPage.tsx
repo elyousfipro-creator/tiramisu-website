@@ -49,13 +49,30 @@ export function LoginPage() {
     }
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     setError('');
     if (!name || !email || !password) { setError('Remplissez tous les champs'); return; }
+    
     const ok = registerClient(name, email, password);
     if (ok) {
-      setSuccess('Compte créé ! Bienvenue !');
-      setTimeout(() => setCurrentPage('home'), 1500);
+      // Send verification email
+      try {
+        const response = await fetch('/api/verify-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name })
+        });
+        
+        if (response.ok) {
+          setSuccess('Compte créé ! Vérifiez votre email pour activer votre compte.');
+        } else {
+          setSuccess('Compte créé ! (Erreur lors de l\'envoi de l\'email de vérification)');
+        }
+      } catch (error) {
+        setSuccess('Compte créé ! Bienvenue !');
+      }
+      
+      setTimeout(() => setCurrentPage('home'), 2000);
     } else {
       setError('Cet email est déjà utilisé');
     }

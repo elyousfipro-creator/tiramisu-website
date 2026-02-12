@@ -9,6 +9,7 @@ import { TrackingPage } from './pages/TrackingPage';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { KitchenDashboard } from './pages/KitchenDashboard';
 import { DeliveryDashboard } from './pages/DeliveryDashboard';
+import { VerifyEmailPage } from './pages/VerifyEmailPage';
 import { Navbar } from './components/Navbar';
 
 export function App() {
@@ -39,6 +40,7 @@ export function App() {
       case 'checkout': return <CheckoutPage />;
       case 'login': return <LoginPage />;
       case 'tracking': return <TrackingPage />;
+      case 'verify-email': return <VerifyEmailPage />;
       default: return <HomePage />;
     }
   };
