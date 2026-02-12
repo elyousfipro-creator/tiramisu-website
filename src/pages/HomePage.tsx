@@ -27,6 +27,16 @@ export function HomePage() {
                 sur mesure
               </span>
             </h1>
+
+            {/* Offre promo */}
+            <div className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-yellow-400 rounded-2xl shadow-lg animate-pulse">
+              <span className="text-2xl">🎁</span>
+              <div className="text-left">
+                <p className="text-xs font-bold text-yellow-700 uppercase tracking-wider">Offre du moment</p>
+                <p className="text-sm font-bold text-gray-800">1 Tiramisu XL acheté = 1 Cookie offert !</p>
+              </div>
+            </div>
+
             <p className="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0">
               Choisis ta taille, tes toppings préférés et tes coulis favoris. 
               Nous préparons ton tiramisu avec amour et te le livrons frais ! 
