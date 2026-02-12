@@ -147,9 +147,9 @@ const defaultCoulis: Coulis[] = [
 ];
 
 const defaultUsers: User[] = [
-  { id: 'admin1', name: 'Administrateur', email: 'admin@cremecookies.fr', password: 'admin123', role: 'admin', active: true },
-  { id: 'kitchen1', name: 'Chef Cuisine', email: 'cuisine@cremecookies.fr', password: 'cuisine123', role: 'kitchen', active: true },
-  { id: 'delivery1', name: 'Livreur Ali', email: 'livreur@cremecookies.fr', password: 'livreur123', role: 'delivery', active: true },
+  { id: 'admin1', name: 'Administrateur', email: 'admin@cremecookies.fr', password: 'Ayoub1821305!', role: 'admin', active: true },
+  { id: 'kitchen1', name: 'Chef Cuisine', email: 'cuisine@cremecookies.fr', password: 'Ayoub1821305!', role: 'kitchen', active: true },
+  { id: 'delivery1', name: 'Livreur Ali', email: 'livreur@cremecookies.fr', password: 'Ayoub1821305!', role: 'delivery', active: true },
 ];
 
 const sampleOrders: Order[] = [

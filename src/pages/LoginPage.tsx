@@ -112,25 +112,6 @@ export function LoginPage() {
             {isRegister ? 'Déjà un compte ? Se connecter' : 'Pas encore de compte ? S\'inscrire'}
           </button>
         </div>
-
-        {/* Demo credentials */}
-        <div className="mt-8 pt-6 border-t border-gray-100">
-          <p className="text-xs text-gray-400 text-center mb-3">Comptes de démonstration :</p>
-          <div className="space-y-2">
-            {[
-              { role: '👑 Admin', email: 'admin@cremecookies.fr', pass: 'admin123' },
-              { role: '👨‍🍳 Cuisine', email: 'cuisine@cremecookies.fr', pass: 'cuisine123' },
-              { role: '🚗 Livreur', email: 'livreur@cremecookies.fr', pass: 'livreur123' },
-            ].map(d => (
-              <button key={d.email}
-                onClick={() => { setEmail(d.email); setPassword(d.pass); }}
-                className="w-full text-left p-2 rounded-lg hover:bg-pastel-beige-50 text-xs text-gray-500 flex justify-between transition-colors">
-                <span>{d.role}</span>
-                <span className="text-gray-400">{d.email}</span>
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
