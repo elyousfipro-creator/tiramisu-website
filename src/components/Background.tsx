@@ -1,13 +1,13 @@
-import backgroundPattern from '../assets/background-creme-cookie.png';
+import logoBg from '../assets/logo-bg.png';
 
 export function Background() {
   return (
     <div 
-      className="fixed inset-0 pointer-events-none opacity-30 z-0"
+      className="fixed inset-0 pointer-events-none opacity-20 z-0"
       style={{
-        backgroundImage: `url(${backgroundPattern})`,
+        backgroundImage: `url(${logoBg})`,
         backgroundPosition: 'center',
-        backgroundSize: '40%',
+        backgroundSize: '35%',
         backgroundRepeat: 'repeat',
       }}
     />
