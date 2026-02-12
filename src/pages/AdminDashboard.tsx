@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStore, type OrderStatus, type UserRole } from '../store';
-import { BarChart3, Users, Package, Settings, TrendingUp, DollarSign, Eye, UserPlus, ToggleLeft, ToggleRight } from 'lucide-react';
+import { BarChart3, Users, Package, Settings, TrendingUp, DollarSign, Eye, UserPlus, ToggleLeft, ToggleRight, Trash2, Calendar } from 'lucide-react';
 
 const statusLabels: Record<OrderStatus, { label: string; color: string }> = {
   new: { label: 'Nouvelle', color: 'bg-pastel-blue-100 text-pastel-blue-700' },
@@ -15,6 +15,8 @@ export function AdminDashboard() {
   const [tab, setTab] = useState<'stats' | 'orders' | 'products' | 'users'>('stats');
   const [newUserForm, setNewUserForm] = useState({ name: '', email: '', password: '', role: 'kitchen' as UserRole });
   const [showAddUser, setShowAddUser] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<string>('all');
+  const [selectedYear, setSelectedYear] = useState<string>('all');
 
   const stats = store.getStats();
 
@@ -141,56 +143,114 @@ export function AdminDashboard() {
       {/* Orders tab */}
       {tab === 'orders' && (
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-800 text-lg">Toutes les commandes</h3>
-          {store.orders.length === 0 ? (
-            <div className="bg-white rounded-2xl p-12 text-center shadow-md">
-              <div className="text-4xl mb-3">📦</div>
-              <p className="text-gray-500">Aucune commande pour le moment</p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <h3 className="font-bold text-gray-800 text-lg">Toutes les commandes</h3>
+            <div className="flex items-center gap-2">
+              <Calendar size={16} className="text-gray-400" />
+              <select 
+                value={selectedMonth} 
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm outline-none focus:ring-2 focus:ring-pastel-blue-300"
+              >
+                <option value="all">Tous les mois</option>
+                <option value="0">Janvier</option>
+                <option value="1">Février</option>
+                <option value="2">Mars</option>
+                <option value="3">Avril</option>
+                <option value="4">Mai</option>
+                <option value="5">Juin</option>
+                <option value="6">Juillet</option>
+                <option value="7">Août</option>
+                <option value="8">Septembre</option>
+                <option value="9">Octobre</option>
+                <option value="10">Novembre</option>
+                <option value="11">Décembre</option>
+              </select>
+              <select 
+                value={selectedYear} 
+                onChange={(e) => setSelectedYear(e.target.value)}
+                className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm outline-none focus:ring-2 focus:ring-pastel-blue-300"
+              >
+                <option value="all">Toutes les années</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+              </select>
             </div>
-          ) : store.orders.map(order => (
-            <div key={order.id} className="bg-white rounded-2xl p-6 shadow-md border border-pastel-beige-200 hover:shadow-lg transition-all">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                <div>
-                  <h4 className="font-bold text-gray-800 text-lg">{order.id}</h4>
-                  <p className="text-sm text-gray-500">{order.clientName} · {order.clientPhone}</p>
-                  <p className="text-xs text-gray-400">{new Date(order.createdAt).toLocaleString('fr-FR')}</p>
-                  {order.notes && <p className="text-xs text-pastel-pink-600 mt-1">📝 {order.notes}</p>}
+          </div>
+          {(() => {
+            const filteredOrders = store.orders.filter(order => {
+              const orderDate = new Date(order.createdAt);
+              const monthMatch = selectedMonth === 'all' || orderDate.getMonth() === parseInt(selectedMonth);
+              const yearMatch = selectedYear === 'all' || orderDate.getFullYear() === parseInt(selectedYear);
+              return monthMatch && yearMatch;
+            });
+            
+            if (filteredOrders.length === 0) {
+              return (
+                <div className="bg-white rounded-2xl p-12 text-center shadow-md">
+                  <div className="text-4xl mb-3">📦</div>
+                  <p className="text-gray-500">Aucune commande pour cette période</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${statusLabels[order.status].color}`}>
-                    {statusLabels[order.status].label}
-                  </span>
-                  <span className="text-xl font-extrabold text-pastel-pink-500">{order.total}€</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {order.items.map((item, i) => (
-                  <div key={i} className="bg-pastel-beige-50 rounded-xl p-3 flex items-center justify-between text-sm">
-                    <div>
-                      <span className="font-medium">{item.size === 'L' ? '🍰' : '🎂'} Tiramisu {item.size}</span>
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {item.toppings.map(t => <span key={t} className="text-xs px-2 py-0.5 bg-pastel-pink-100 text-pastel-pink-600 rounded-full">{t}</span>)}
-                        {item.coulis.map(c => <span key={c} className="text-xs px-2 py-0.5 bg-pastel-blue-100 text-pastel-blue-600 rounded-full">{c}</span>)}
-                      </div>
-                    </div>
-                    <span className="font-bold text-pastel-pink-500">{item.price}€</span>
+              );
+            }
+            
+            return filteredOrders.map(order => (
+              <div key={order.id} className="bg-white rounded-2xl p-6 shadow-md border border-pastel-beige-200 hover:shadow-lg transition-all">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                  <div>
+                    <h4 className="font-bold text-gray-800 text-lg">{order.id}</h4>
+                    <p className="text-sm text-gray-500">{order.clientName} · {order.clientPhone}</p>
+                    <p className="text-xs text-gray-400">{new Date(order.createdAt).toLocaleString('fr-FR')}</p>
+                    {order.notes && <p className="text-xs text-pastel-pink-600 mt-1">📝 {order.notes}</p>}
                   </div>
-                ))}
+                  <div className="flex items-center gap-3">
+                    <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${statusLabels[order.status].color}`}>
+                      {statusLabels[order.status].label}
+                    </span>
+                    <span className="text-xl font-extrabold text-pastel-pink-500">{order.total}€</span>
+                    <button 
+                      onClick={() => {
+                        if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+                          store.deleteOrder(order.id);
+                        }
+                      }}
+                      className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                      title="Supprimer la commande"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {order.items.map((item, i) => (
+                    <div key={i} className="bg-pastel-beige-50 rounded-xl p-3 flex items-center justify-between text-sm">
+                      <div>
+                        <span className="font-medium">{item.size === 'L' ? '🍰' : '🎂'} Tiramisu {item.size}</span>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {item.toppings.map(t => <span key={t} className="text-xs px-2 py-0.5 bg-pastel-pink-100 text-pastel-pink-600 rounded-full">{t}</span>)}
+                          {item.coulis.map(c => <span key={c} className="text-xs px-2 py-0.5 bg-pastel-blue-100 text-pastel-blue-600 rounded-full">{c}</span>)}
+                        </div>
+                      </div>
+                      <span className="font-bold text-pastel-pink-500">{item.price}€</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 pt-4 border-t flex flex-wrap gap-2">
+                  {(['new', 'preparing', 'ready', 'delivering', 'delivered'] as OrderStatus[]).map(s => (
+                    <button key={s} onClick={() => store.updateOrderStatus(order.id, s)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        order.status === s
+                          ? 'bg-gradient-to-r from-pastel-pink-400 to-pastel-blue-400 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                      }`}>
+                      {statusLabels[s].label}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="mt-4 pt-4 border-t flex flex-wrap gap-2">
-                {(['new', 'preparing', 'ready', 'delivering', 'delivered'] as OrderStatus[]).map(s => (
-                  <button key={s} onClick={() => store.updateOrderStatus(order.id, s)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                      order.status === s
-                        ? 'bg-gradient-to-r from-pastel-pink-400 to-pastel-blue-400 text-white shadow-md'
-                        : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                    }`}>
-                    {statusLabels[s].label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
+            ));
+          })()}
         </div>
       )}
 

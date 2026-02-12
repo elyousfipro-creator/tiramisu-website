@@ -86,6 +86,7 @@ interface AppState {
   placeOrder: (clientName: string, clientPhone: string, clientAddress: string, notes: string) => string;
   updateOrderStatus: (orderId: string, status: OrderStatus) => void;
   assignDriver: (orderId: string, driverName: string) => void;
+  deleteOrder: (orderId: string) => void;
 
   // Notifications
   notifications: Notification[];
@@ -273,6 +274,11 @@ export const useStore = create<AppState>((set, get) => ({
   assignDriver: (orderId, driverName) => {
     set(s => ({
       orders: s.orders.map(o => o.id === orderId ? { ...o, assignedDriver: driverName } : o)
+    }));
+  },
+  deleteOrder: (orderId) => {
+    set(s => ({
+      orders: s.orders.filter(o => o.id !== orderId)
     }));
   },
 
