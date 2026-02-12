@@ -9,6 +9,7 @@ import oreoImg from '../assets/TOPPING OREO.webp';
 import cookieImg from '../assets/TOPPING COOKIE.jpg';
 import mmsImg from '../assets/TOPPINGS M&M\'S.jpg';
 import twixImg from '../assets/TOPPINGS TWIX.jpg';
+import speculosImg from '../assets/TOPPING SPECULOS.jpg';
 // Import coulis images
 import coulisChocolatImg from '../assets/COULIS CHOCOLAT .png';
 import coulisCaramelImg from '../assets/COULIS CARAMEL.png';
@@ -22,12 +23,13 @@ const toppingImages: Record<string, string> = {
   'Cookies': cookieImg,
   "M&M's": mmsImg,
   'Twix': twixImg,
+  'Spéculoos': speculosImg,
 };
 
 const coulisImages: Record<string, string> = {
   'Coulis Chocolat': coulisChocolatImg,
   'Caramel': coulisCaramelImg,
-  'Spéculoos': coulisSpeculosImg,
+  'Coulis Spéculoos': coulisSpeculosImg,
   'Nutella': coulisNutellaImg,
 };
 

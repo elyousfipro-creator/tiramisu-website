@@ -1,7 +1,7 @@
 import { useStore } from '../store';
 import { ArrowRight, Star, Clock, Truck as TruckIcon, Heart } from 'lucide-react';
 import kinderBuenoImage from '../assets/TOOPPINGS KINDER BUENO.jpg';
-import backgroundLogo from '../assets/BACKGROUND LOGOpng.png';
+import backgroundPattern from '../assets/background-creme-cookie.png';
 
 export function HomePage() {
   const setCurrentPage = useStore(s => s.setCurrentPage);
@@ -10,12 +10,12 @@ export function HomePage() {
     <div className="overflow-hidden relative">
       {/* Background Logo */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-5 z-0"
+        className="fixed inset-0 pointer-events-none opacity-30 z-0"
         style={{
-          backgroundImage: `url(${backgroundLogo})`,
+          backgroundImage: `url(${backgroundPattern})`,
           backgroundPosition: 'center',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
+          backgroundSize: '40%',
+          backgroundRepeat: 'repeat',
         }}
       />
       {/* Hero */}
