@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore, type OrderStatus } from '../store';
 import { Truck, MapPin, Phone, Clock, CheckCircle2, Package, History, Navigation, ExternalLink } from 'lucide-react';
+import { Background } from '../components/Background';
 
 const statusLabels: Record<OrderStatus, { label: string; color: string }> = {
   new: { label: 'Nouvelle', color: 'bg-pastel-blue-100 text-pastel-blue-700' },
@@ -31,7 +32,8 @@ export function DeliveryDashboard() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="relative max-w-6xl mx-auto px-4 py-8">
+      <Background />
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-gray-800 flex items-center gap-3">
           <Truck className="text-pastel-blue-500" /> Dashboard Livreur

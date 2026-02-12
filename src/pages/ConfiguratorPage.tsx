@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore, calculatePrice, type Size } from '../store';
 import { Check, Plus, ShoppingCart, Heart, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Background } from '../components/Background';
 
 // Import topping images
 import kinderBuenoImg from '../assets/TOOPPINGS KINDER BUENO.jpg';
@@ -86,7 +87,8 @@ export function ConfiguratorPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="relative max-w-6xl mx-auto px-4 py-8">
+      <Background />
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl lg:text-4xl font-extrabold text-gray-800">

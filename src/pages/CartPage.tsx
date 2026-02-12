@@ -1,6 +1,7 @@
 import { useStore } from '../store';
 import { Trash2, ShoppingBag, ArrowRight, Plus, Edit3 } from 'lucide-react';
 import { useState } from 'react';
+import { Background } from '../components/Background';
 
 export function CartPage() {
   const { cart, removeFromCart, clearCart, setCurrentPage, toppings, coulisList, prices, updateCartItem } = useStore();
@@ -35,7 +36,8 @@ export function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
+      <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
+        <Background />
         <div className="text-6xl mb-6">🛒</div>
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Ton panier est vide</h2>
         <p className="text-gray-500 mb-8">Compose ton premier tiramisu !</p>
@@ -48,7 +50,8 @@ export function CartPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="relative max-w-4xl mx-auto px-4 py-8">
+      <Background />
       <h1 className="text-3xl font-extrabold text-gray-800 mb-8 flex items-center gap-3">
         <ShoppingBag className="text-pastel-pink-500" /> Mon Panier
         <span className="text-lg font-normal text-gray-400">({cart.length} article{cart.length > 1 ? 's' : ''})</span>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore, type OrderStatus } from '../store';
 import { Search, Package, Clock, ChefHat, Truck, CheckCircle2 } from 'lucide-react';
+import { Background } from '../components/Background';
 
 const statusConfig: Record<OrderStatus, { label: string; color: string; icon: React.ReactNode; step: number }> = {
   new: { label: 'Nouvelle commande', color: 'text-pastel-blue-500', icon: <Package size={20} />, step: 1 },
@@ -36,7 +37,8 @@ export function TrackingPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <div className="relative max-w-3xl mx-auto px-4 py-12">
+      <Background />
       <div className="text-center mb-10">
         <h1 className="text-3xl font-extrabold text-gray-800 flex items-center justify-center gap-3">
           <Package className="text-pastel-blue-500" /> Suivi de commande

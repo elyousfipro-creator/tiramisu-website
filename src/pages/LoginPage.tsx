@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '../store';
 import { LogIn, UserPlus, Mail, Lock, User } from 'lucide-react';
+import { Background } from '../components/Background';
 
 export function LoginPage() {
   const { login, registerClient, setCurrentPage, currentUser } = useStore();
@@ -13,7 +14,8 @@ export function LoginPage() {
 
   if (currentUser) {
     return (
-      <div className="max-w-md mx-auto px-4 py-20 text-center">
+      <div className="relative max-w-md mx-auto px-4 py-20 text-center">
+        <Background />
         <div className="bg-white rounded-3xl p-8 shadow-xl border border-pastel-pink-200">
           <div className="text-5xl mb-4">👋</div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Bienvenue, {currentUser.name} !</h2>
@@ -60,7 +62,8 @@ export function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-12">
+    <div className="relative max-w-md mx-auto px-4 py-12">
+      <Background />
       <div className="bg-white rounded-3xl p-8 shadow-2xl border border-pastel-pink-200">
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">🍪</div>

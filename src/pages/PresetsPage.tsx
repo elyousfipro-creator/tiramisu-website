@@ -1,5 +1,6 @@
 import { useStore } from '../store';
 import { ShoppingCart, Plus, Star } from 'lucide-react';
+import { Background } from '../components/Background';
 import oreoImage from '../assets/TIRAMISU OREO .png';
 import speculosImage from '../assets/TIRAMISU LOTUS .png';
 import kinderBuenoImage from '../assets/TIRAMISU KINDER BUENI.png';
@@ -155,7 +156,8 @@ export function PresetsPage() {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+    <div className="relative min-h-screen p-4 sm:p-6 lg:p-8">
+      <Background />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">

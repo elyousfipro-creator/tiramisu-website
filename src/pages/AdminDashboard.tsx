@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore, type OrderStatus, type UserRole } from '../store';
 import { BarChart3, Users, Package, Settings, TrendingUp, DollarSign, Eye, UserPlus, ToggleLeft, ToggleRight, Trash2, Calendar } from 'lucide-react';
+import { Background } from '../components/Background';
 
 const statusLabels: Record<OrderStatus, { label: string; color: string }> = {
   new: { label: 'Nouvelle', color: 'bg-pastel-blue-100 text-pastel-blue-700' },
@@ -28,7 +29,8 @@ export function AdminDashboard() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="relative max-w-7xl mx-auto px-4 py-8">
+      <Background />
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-gray-800">👑 Dashboard Admin</h1>
         <p className="text-gray-500">Gestion complète — Crème & Cookies</p>

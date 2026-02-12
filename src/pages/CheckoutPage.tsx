@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '../store';
 import { CreditCard, MapPin, Phone, User, FileText, Check } from 'lucide-react';
+import { Background } from '../components/Background';
 
 export function CheckoutPage() {
   const { cart, placeOrder, setCurrentPage, currentUser } = useStore();
@@ -15,7 +16,8 @@ export function CheckoutPage() {
 
   if (cart.length === 0 && !orderId) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
+      <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
+        <Background />
         <div className="text-6xl mb-4">🛒</div>
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Panier vide</h2>
         <p className="text-gray-500 mb-6">Ajoutez des tiramisus avant de commander</p>
@@ -29,7 +31,8 @@ export function CheckoutPage() {
 
   if (orderId) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-20 text-center">
+      <div className="relative max-w-2xl mx-auto px-4 py-20 text-center">
+        <Background />
         <div className="bg-white rounded-3xl p-12 shadow-2xl border border-green-200">
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <Check size={40} className="text-green-500" />
@@ -65,7 +68,8 @@ export function CheckoutPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="relative max-w-4xl mx-auto px-4 py-8">
+      <Background />
       <h1 className="text-3xl font-extrabold text-gray-800 mb-8 flex items-center gap-3">
         <CreditCard className="text-pastel-blue-500" /> Finaliser la commande
       </h1>
