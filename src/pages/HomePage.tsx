@@ -1,6 +1,6 @@
 import { useStore } from '../store';
 import { ArrowRight, Star, Clock, Truck as TruckIcon, Heart } from 'lucide-react';
-import kinderBuenoImage from '../assets/KINDER BUENO.jpg';
+import kinderBuenoImage from '../assets/TOOPPINGS KINDER BUENO.jpg';
 
 export function HomePage() {
   const setCurrentPage = useStore(s => s.setCurrentPage);

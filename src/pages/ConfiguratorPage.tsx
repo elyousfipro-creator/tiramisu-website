@@ -2,6 +2,35 @@ import { useState } from 'react';
 import { useStore, calculatePrice, type Size } from '../store';
 import { Check, Plus, ShoppingCart, Heart, ArrowRight, ArrowLeft } from 'lucide-react';
 
+// Import topping images
+import kinderBuenoImg from '../assets/TOOPPINGS KINDER BUENO.jpg';
+import kinderBuenoWhiteImg from '../assets/TOOPPINGS KINDER BUENO WHITE.jpg';
+import oreoImg from '../assets/TOPPING OREO.webp';
+import cookieImg from '../assets/TOPPING COOKIE.jpg';
+import mmsImg from '../assets/TOPPINGS M&M\'S.jpg';
+import twixImg from '../assets/TOPPINGS TWIX.jpg';
+// Import coulis images
+import coulisChocolatImg from '../assets/COULIS CHOCOLAT .png';
+import coulisCaramelImg from '../assets/COULIS CARAMEL.png';
+import coulisSpeculosImg from '../assets/COULIS SPECULOS.png';
+import coulisNutellaImg from '../assets/Coulis nutella.jpg';
+
+const toppingImages: Record<string, string> = {
+  'Kinder Bueno': kinderBuenoImg,
+  'Kinder Bueno White': kinderBuenoWhiteImg,
+  'Oreo': oreoImg,
+  'Cookies': cookieImg,
+  "M&M's": mmsImg,
+  'Twix': twixImg,
+};
+
+const coulisImages: Record<string, string> = {
+  'Coulis Chocolat': coulisChocolatImg,
+  'Caramel': coulisCaramelImg,
+  'Spéculoos': coulisSpeculosImg,
+  'Nutella': coulisNutellaImg,
+};
+
 export function ConfiguratorPage() {
   const { toppings, coulisList, prices, addToCart, addFavorite, currentUser, setCurrentPage, favorites } = useStore();
   const [step, setStep] = useState(1);
@@ -127,6 +156,7 @@ export function ConfiguratorPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {activeToppings.map(t => {
                   const selected = selectedToppings.includes(t.name);
+                  const imgSrc = toppingImages[t.name];
                   return (
                     <button key={t.id} onClick={() => toggleTopping(t.name)}
                       className={`relative p-4 rounded-2xl border-2 transition-all duration-200 transform hover:scale-105 ${
@@ -139,7 +169,11 @@ export function ConfiguratorPage() {
                           <Check size={12} className="text-white" />
                         </div>
                       )}
-                      <div className="text-3xl mb-2">{t.emoji}</div>
+                      {imgSrc ? (
+                        <img src={imgSrc} alt={t.name} className="w-full h-16 object-cover rounded-xl mb-2" />
+                      ) : (
+                        <div className="text-3xl mb-2">{t.emoji}</div>
+                      )}
                       <p className="text-sm font-semibold text-gray-700">{t.name}</p>
                     </button>
                   );
@@ -168,6 +202,7 @@ export function ConfiguratorPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {activeCoulis.map(c => {
                   const selected = selectedCoulis.includes(c.name);
+                  const imgSrc = coulisImages[c.name];
                   return (
                     <button key={c.id} onClick={() => toggleCoulisItem(c.name)}
                       className={`relative p-5 rounded-2xl border-2 transition-all duration-200 transform hover:scale-105 ${
@@ -180,7 +215,11 @@ export function ConfiguratorPage() {
                           <Check size={12} className="text-white" />
                         </div>
                       )}
-                      <div className="text-3xl mb-2">{c.emoji}</div>
+                      {imgSrc ? (
+                        <img src={imgSrc} alt={c.name} className="w-full h-16 object-cover rounded-xl mb-2" />
+                      ) : (
+                        <div className="text-3xl mb-2">{c.emoji}</div>
+                      )}
                       <p className="text-sm font-semibold text-gray-700">{c.name}</p>
                     </button>
                   );
