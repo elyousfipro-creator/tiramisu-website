@@ -46,7 +46,7 @@ export function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-br from-pastel-pink-200 to-pastel-blue-200 rounded-full opacity-30 blur-3xl animate-pulse" />
               <div className="relative bg-gradient-to-br from-white to-pastel-pink-100 rounded-3xl p-8 shadow-2xl border border-pastel-pink-300 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <div className="text-center space-y-4">
-                  <img src={kinderBuenoImage} alt="Tiramisu Kinder Bueno" className="w-full h-48 object-cover rounded-2xl" />
+                  <img src={kinderBuenoImage} alt="Tiramisu" className="w-full h-48 object-cover rounded-2xl" />
                   <h3 className="text-2xl font-bold text-pastel-blue-700">Tiramisu</h3>
                   <p className="text-pastel-pink-600">À partir de <span className="text-3xl font-extrabold">5€</span></p>
                   <div className="flex items-center justify-center gap-1">
