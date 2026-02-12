@@ -14,36 +14,36 @@ import miniCookiesImage from '../assets/TIRAMISU MINI COOKIES.png';
 
 const presetTiramisus = [
   {
-    id: 'oreo',
-    name: 'Tiramisu Oreo',
+    id: 'oreo-xl',
+    name: 'Tiramisu Oreo XL',
     description: 'Le classique revisité avec des biscuits Oreo croquants',
-    price: 5.00,
+    price: 10.00,
     image: oreoImage,
-    size: 'L' as const,
+    size: 'XL' as const,
     toppings: ['oreo'],
     coulis: ['chocolat'],
     rating: 4.8,
     popular: true
   },
   {
-    id: 'speculos',
-    name: 'Tiramisu Spéculos',
+    id: 'speculos-xl',
+    name: 'Tiramisu Spéculos XL',
     description: 'Le goût caramelisé du Spéculos traditionnel',
-    price: 5.00,
+    price: 10.00,
     image: speculosImage,
-    size: 'L' as const,
+    size: 'XL' as const,
     toppings: ['speculos'],
     coulis: ['caramel'],
     rating: 4.6,
     popular: true
   },
   {
-    id: 'kinder-bueno',
-    name: 'Tiramisu Kinder Bueno',
+    id: 'kinder-bueno-xl',
+    name: 'Tiramisu Kinder Bueno XL',
     description: 'Le goût unique du Kinder Bueno dans un tiramisu crémeux',
-    price: 5.00,
+    price: 10.00,
     image: kinderBuenoImage,
-    size: 'L' as const,
+    size: 'XL' as const,
     toppings: ['kinder-bueno'],
     coulis: ['chocolat'],
     rating: 4.7,
@@ -51,24 +51,24 @@ const presetTiramisus = [
     hasWhiteOption: true
   },
   {
-    id: 'twix',
-    name: 'Tiramisu Twix',
+    id: 'twix-xl',
+    name: 'Tiramisu Twix XL',
     description: 'Le duo caramel-chocolat du Twix',
-    price: 5.00,
+    price: 10.00,
     image: twixImage,
-    size: 'L' as const,
+    size: 'XL' as const,
     toppings: ['twix'],
     coulis: ['caramel'],
     rating: 4.6,
     popular: false
   },
   {
-    id: 'cookies',
-    name: 'Tiramisu Cookies',
+    id: 'cookies-xl',
+    name: 'Tiramisu Cookies XL',
     description: 'Cookies maison et chocolat fondant',
-    price: 5.00,
+    price: 10.00,
     image: cookieImage,
-    size: 'L' as const,
+    size: 'XL' as const,
     toppings: ['cookies'],
     coulis: ['chocolat'],
     rating: 4.3,
@@ -140,17 +140,17 @@ const presetTiramisus = [
 export function PresetsPage() {
   const { addToCart, setCurrentPage } = useStore();
 
-  const handleAddToCart = (preset: typeof presetTiramisus[0], isWhite: boolean = false, size: 'L' | 'XL' = 'L') => {
+  const handleAddToCart = (preset: typeof presetTiramisus[0], isWhite: boolean = false) => {
     const finalToppings = isWhite && preset.hasWhiteOption 
       ? preset.toppings.map(t => t === 'kinder-bueno' ? 'kinder-bueno-white' : t === 'kinder' ? 'kinder-white' : t)
       : preset.toppings;
     
     addToCart({
-      id: `preset-${preset.id}-${isWhite ? 'white' : 'normal'}-${size}-${Date.now()}`,
-      size: size,
+      id: `preset-${preset.id}-${isWhite ? 'white' : 'normal'}-${Date.now()}`,
+      size: preset.size,
       toppings: finalToppings,
       coulis: preset.coulis,
-      price: size === 'XL' ? 10.00 : 5.00
+      price: preset.price
     });
   };
 
@@ -167,16 +167,16 @@ export function PresetsPage() {
           </p>
         </div>
 
-        {/* Popular Section */}
+        {/* XL Section */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
             <Star className="text-pastel-pink-500 fill-current" />
-            Les Plus Populaires
+            Format XL - 10.00€
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {presetTiramisus.filter(p => p.popular).map((preset) => (
+            {presetTiramisus.filter(p => p.size === 'XL').map((preset) => (
               <div key={preset.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-pastel-pink-100 to-pastel-blue-100">
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-pastel-pink-100 to-pastel-blue-100">
                   <img
                     src={preset.image}
                     alt={preset.name}
@@ -192,24 +192,24 @@ export function PresetsPage() {
                   <p className="text-gray-600 text-sm mb-4">{preset.description}</p>
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-2xl font-bold text-pastel-blue-600">5.00 €</span>
-                      <span className="text-sm text-gray-500 ml-2">L / 10.00 € XL</span>
+                      <span className="text-2xl font-bold text-pastel-blue-600">10.00 €</span>
+                      <span className="text-sm text-gray-500 ml-2">Format XL</span>
                     </div>
                     <div className="flex gap-2">
                       {preset.hasWhiteOption && (
                         <button
-                          onClick={() => handleAddToCart(preset, false, 'L')}
+                          onClick={() => handleAddToCart(preset, false)}
                           className="bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white px-3 py-2 rounded-xl hover:shadow-lg transition-all text-sm"
                         >
-                          Normal L
+                          Normal
                         </button>
                       )}
                       <button
-                        onClick={() => handleAddToCart(preset, preset.hasWhiteOption, 'L')}
+                        onClick={() => handleAddToCart(preset, preset.hasWhiteOption)}
                         className={`bg-gradient-to-r ${preset.hasWhiteOption ? 'from-pastel-pink-300 to-pastel-pink-400' : 'from-pastel-pink-500 to-pastel-blue-500'} text-white px-4 py-2 rounded-xl hover:shadow-lg transition-all flex items-center gap-2`}
                       >
                         <ShoppingCart size={18} />
-                        <span>{preset.hasWhiteOption ? 'White L' : 'Taille L'}</span>
+                        <span>{preset.hasWhiteOption ? 'White' : 'Ajouter'}</span>
                       </button>
                     </div>
                   </div>
@@ -219,24 +219,18 @@ export function PresetsPage() {
           </div>
         </div>
 
-        {/* All Presets */}
+        {/* Mini Section */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Tous nos Tiramisus</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Format Mini - 5.00€</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {presetTiramisus.map((preset) => (
+            {presetTiramisus.filter(p => p.size === 'L').map((preset) => (
               <div key={preset.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-                <div className="relative h-32 overflow-hidden bg-gradient-to-br from-pastel-pink-100 to-pastel-blue-100">
+                <div className="relative h-40 overflow-hidden bg-gradient-to-br from-pastel-pink-100 to-pastel-blue-100">
                   <img
                     src={preset.image}
                     alt={preset.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  {preset.popular && (
-                    <div className="absolute top-2 right-2 bg-pastel-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                      <Star size={10} fill="currentColor" />
-                      Populaire
-                    </div>
-                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold text-gray-800 mb-1">{preset.name}</h3>
@@ -244,19 +238,19 @@ export function PresetsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-lg font-bold text-pastel-blue-600">5.00 €</span>
-                      <span className="text-xs text-gray-500 ml-1">L/XL 10€</span>
+                      <span className="text-xs text-gray-500 ml-1">Mini</span>
                     </div>
                     <div className="flex gap-1">
                       {preset.hasWhiteOption && (
                         <button
-                          onClick={() => handleAddToCart(preset, false, 'L')}
+                          onClick={() => handleAddToCart(preset, false)}
                           className="bg-gradient-to-r from-pastel-blue-500 to-pastel-blue-600 text-white px-2 py-1 rounded-lg hover:shadow-md transition-all text-xs"
                         >
-                          N L
+                          N
                         </button>
                       )}
                       <button
-                        onClick={() => handleAddToCart(preset, preset.hasWhiteOption, 'L')}
+                        onClick={() => handleAddToCart(preset, preset.hasWhiteOption)}
                         className={`bg-gradient-to-r ${preset.hasWhiteOption ? 'from-pastel-pink-300 to-pastel-pink-400' : 'from-pastel-pink-500 to-pastel-blue-500'} text-white p-2 rounded-lg hover:shadow-md transition-all`}
                       >
                         <Plus size={16} />
