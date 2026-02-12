@@ -143,7 +143,7 @@ const defaultToppings: Topping[] = [
 const defaultCoulis: Coulis[] = [
   { id: 'chocolat', name: 'Coulis Chocolat', emoji: '🍫', active: true },
   { id: 'nutella', name: 'Nutella', emoji: '🫙', active: true },
-  { id: 'speculoos-coulis', name: 'Spéculoos', emoji: '🍯', active: true },
+  { id: 'speculoos-coulis', name: 'Coulis Spéculoos', emoji: '🍯', active: true },
   { id: 'caramel', name: 'Caramel', emoji: '🍮', active: true },
 ];
 

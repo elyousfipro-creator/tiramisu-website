@@ -1,12 +1,23 @@
 import { useStore } from '../store';
 import { ArrowRight, Star, Clock, Truck as TruckIcon, Heart } from 'lucide-react';
 import kinderBuenoImage from '../assets/TOOPPINGS KINDER BUENO.jpg';
+import backgroundLogo from '../assets/BACKGROUND LOGOpng.png';
 
 export function HomePage() {
   const setCurrentPage = useStore(s => s.setCurrentPage);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden relative">
+      {/* Background Logo */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-5 z-0"
+        style={{
+          backgroundImage: `url(${backgroundLogo})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
       {/* Hero */}
       <section className="relative py-20 lg:py-32 px-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
