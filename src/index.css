@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pastel-blue: #B8D4E3;
+  --color-pastel-blue-light: #D6E8F2;
+  --color-pastel-blue-dark: #7BAAC8;
+  --color-pastel-blue-50: #EDF4F9;
+  --color-pastel-blue-100: #D6E8F2;
+  --color-pastel-blue-200: #B8D4E3;
+  --color-pastel-blue-300: #94BDD4;
+  --color-pastel-blue-400: #7BAAC8;
+  --color-pastel-blue-500: #5E94B8;
+  --color-pastel-blue-600: #4A7A9E;
+  --color-pastel-blue-700: #3A6080;
+  
+  --color-pastel-pink: #F2C4CE;
+  --color-pastel-pink-light: #F9DFE5;
+  --color-pastel-pink-50: #FDF0F3;
+  --color-pastel-pink-100: #F9DFE5;
+  --color-pastel-pink-200: #F2C4CE;
+  --color-pastel-pink-300: #E8A0B0;
+  --color-pastel-pink-400: #DE7C93;
+  --color-pastel-pink-500: #D45A78;
+  --color-pastel-pink-600: #B84460;
+  --color-pastel-pink-700: #993A52;
+  
+  --color-pastel-beige: #F5E6D3;
+  --color-pastel-beige-light: #FAF0E6;
+  --color-pastel-beige-50: #FDF8F2;
+  --color-pastel-beige-100: #FAF0E6;
+  --color-pastel-beige-200: #F5E6D3;
+  --color-pastel-beige-300: #EDDCC6;
+  --color-pastel-beige-400: #E0C9A8;
+  --color-pastel-beige-500: #D4B68E;
+  --color-pastel-beige-600: #BF9C6E;
+  --color-pastel-beige-700: #A07F55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #E8D5C4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E8D5C4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DE7C93;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D45A78;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
