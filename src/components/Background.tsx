@@ -1,4 +1,4 @@
-import logoBg from '../assets/logo-bg.png';
+import logoBg from '../assets/BACKGROUND LOGOpng.png';
 
 export function Background() {
   return (
